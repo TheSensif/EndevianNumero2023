@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EndevianNumero2023</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="jugar">Jugar</string>
 </resources>
