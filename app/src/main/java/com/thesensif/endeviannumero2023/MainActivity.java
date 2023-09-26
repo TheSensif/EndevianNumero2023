@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     int randomNumber;
+    String history = "";
+    int contador = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,13 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         EditText editText = findViewById(R.id.textNumber);
+        TextView counter = findViewById(R.id.contador);
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(history);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                contador += 1;
                 int uNumber = Integer.parseInt(editText.getText().toString());
                 int duration = Toast.LENGTH_LONG;
                 Context context = getApplicationContext();
+                counter.setText(Integer.toString(contador));
                 if (randomNumber == uNumber) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                     alert.setMessage("¡Has ganado la partida!\n¿Quieres seguir jugando?")
@@ -49,9 +57,13 @@ public class MainActivity extends AppCompatActivity {
                     titulo.show();
                 } else if (randomNumber > uNumber) {
                     CharSequence text = "El numer " + uNumber + " es mas pequeño";
+                    history= history + uNumber + "\n";
+                    textView.setText(history);
                     toastShow(context,text,duration);
                 }else {
                     CharSequence text = "El numer " + uNumber + " es mas grande";
+                    history= history + uNumber + "\n";
+                    textView.setText(history);
                     toastShow(context,text,duration);
                 }
 
