@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +21,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent secAct = new Intent(this, HallOfFame.class);
 
         randomNumber = randomNumber();
 
         Button button = findViewById(R.id.button);
+        Button changeActivity = findViewById(R.id.button2);
         EditText editText = findViewById(R.id.textNumber);
         TextView counter = findViewById(R.id.contador);
         TextView textView = findViewById(R.id.textView);
@@ -67,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
                     toastShow(context,text,duration);
                 }
 
+            }
+        });
+
+        changeActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                secAct.putExtra("contador",Integer.toString(contador));
+                startActivity(secAct);
             }
         });
     }
